@@ -39,7 +39,10 @@ export async function getResourceByAttribute<T>(vid: string, vkey: string, resou
   try {
     const response = await fetch(appUrl, { headers });
     const data = await response.json();
-    console.log('data', data)
+    data?._embedded.policy_versions.forEach((policy: any, index: number) => {
+      console.log(`Policy Version ${index + 1}:`, policy);
+    });
+    
     return data as T;
   } catch (error) {
     throw new Error(`Failed to fetch resource: ${error}`);
