@@ -69,7 +69,6 @@ async function getApplicationByName(appname, vid, vkey) {
         return applications[0];
     }
     catch (error) {
-        console.error(error);
         throw error;
     }
 }
@@ -231,6 +230,8 @@ async function validatePolicyName(inputs) {
             resourceUri: app_config_1.default.api.veracode.policyUri,
             queryAttribute: 'name',
             queryValue: encodeURIComponent(inputs.policyname),
+            queryAttribute1: 'name_exact',
+            queryValue1: true,
         };
         annotations.push({
             path: inputs.path,

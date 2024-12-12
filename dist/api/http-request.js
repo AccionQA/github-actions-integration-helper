@@ -11,13 +11,18 @@ async function getResourceByAttribute(vid, vkey, resource) {
     const resourceUri = resource.resourceUri;
     const queryAttribute = resource.queryAttribute;
     const queryValue = resource.queryValue;
+    const queryAttribute1 = resource.queryAttribute1;
+    const queryValue1 = resource.queryValue1;
     let host = app_config_1.default.hostName.veracode.us;
     if (vid.startsWith('vera01ei-')) {
         host = app_config_1.default.hostName.veracode.eu;
         vid = vid.split('-')[1] || '';
         vkey = vkey.split('-')[1] || '';
     }
-    const urlQueryParams = queryAttribute !== '' ? `?${queryAttribute}=${queryValue}` : '';
+    let urlQueryParams = queryAttribute !== '' ? `?${queryAttribute}=${queryValue}` : '';
+    if (queryAttribute1) {
+        urlQueryParams = urlQueryParams + `&${queryAttribute1}=${queryValue1}`;
+    }
     const queryUrl = resourceUri + urlQueryParams;
     const headers = {
         Authorization: (0, veracode_hmac_1.calculateAuthorizationHeader)({
