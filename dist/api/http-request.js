@@ -33,7 +33,9 @@ async function getResourceByAttribute(vid, vkey, resource) {
     try {
         const response = await fetch(appUrl, { headers });
         const data = await response.json();
-        console.log('data', data);
+        data === null || data === void 0 ? void 0 : data._embedded.policy_versions.forEach((policy, index) => {
+            console.log(`Policy Version ${index + 1}:`, policy);
+        });
         return data;
     }
     catch (error) {

@@ -31,6 +31,7 @@ export type Inputs = {
     branch: string;
     event_type: string;
     issue_trigger_flow: string;
+    name_exact: boolean;
 };
 export declare const parseInputs: (getInput: GetInput) => Inputs;
 export declare const vaildateScanResultsActionInput: (inputs: Inputs) => boolean;
