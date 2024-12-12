@@ -42,14 +42,9 @@ export async function getResourceByAttribute<T>(vid: string, vkey: string, resou
     }),
   };
   const appUrl = `https://${host}${resourceUri}${urlQueryParams}`;
-  console.log('appUrl', appUrl)
   try {
     const response = await fetch(appUrl, { headers });
-    const data = await response.json();
-    data?._embedded.policy_versions.forEach((policy: any, index: number) => {
-      console.log(`Policy Version ${index + 1}:`, policy);
-    });
-    
+    const data = await response.json();  
     return data as T;
   } catch (error) {
     throw new Error(`Failed to fetch resource: ${error}`);
